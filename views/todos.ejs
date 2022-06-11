@@ -1,0 +1,46 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">ToDo一覧</li>
+  </ol>
+</nav>
+<div class="text-center">
+  <% if (completed === '') { %>
+    <h2>ToDo一覧</h2>
+  <% } else if (completed) { %>
+    <h2>完了一覧</h2>
+  <% } else { %>
+    <h2>未完了一覧</h2>
+  <% } %>
+</div>
+<div>
+</div>
+
+<table class="table table-hover" id="todos-table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Deadline</th>
+      <th scope="col">Completed</th>
+      <th scope="col">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% todos.forEach(todo => { %>
+      <tr>
+        <th> <%= todos.indexOf(todo) + 1 %> </td>
+        <td> <%= todo.title %> </td>
+        <td> <%= todo.deadline %> </td>
+        <td> <%= todo.completed ? "完了" : "未完了" %> </td>
+        <td> <%= todo.id %> </th>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<script>
+$("#todos-table tbody tr").on("click",function(){
+	var td_id = $(this).children().eq(4).text().trim();
+  window.location.href = `/todos/${td_id}`
+})
+</script>

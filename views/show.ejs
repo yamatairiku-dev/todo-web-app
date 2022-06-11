@@ -1,0 +1,44 @@
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/todos">ToDo一覧</a></li>
+    <li class="breadcrumb-item active" aria-current="page">ToDo詳細</li>
+  </ol>
+</nav>
+<div>
+  <div class="text-center">
+      <h2>ToDo詳細</h2>
+  </div>
+  <div class="mb-3">
+    <label for="titleInput" class="form-label">タイトル <span class="text-muted">（入力必須）</span></label>
+    <input type="text" name="title" class="form-control" id="titleInput" placeholder="タイトル" required autofocus disabled value="<%= todo.title %>">
+  </div>
+  <div class="mb-3">
+    <label for="contentsInput" class="form-label">内容</label>
+    <textarea name="description" class="form-control" id="contentsInput" placeholder="内容" rows="3" disabled><%= todo.description %></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="deadlineInput" class="form-label">期限 <span class="text-muted">（入力必須）</span></label>
+    <input type="date" name="deadline" class="form-control" id="deadlineInput" required disabled value="<%= todo.deadline %>">
+  </div>
+  <div class="mb-3 row">
+    <label for="staticCompleted" class="col-sm-1 col-form-label">状態</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticDscription" value="<%= todo.completed ? '完了' : '未完了' %>">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="staticId" class="col-sm-1 col-form-label">ID</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticDscription" value="<%= todo.id %>">
+    </div>
+  </div>
+  <hr class="mb-4">
+  <% if (todo.completed) { %>
+  <button type="button" class="btn btn-outline-success" onclick="location.href='/todos/<%= todo.id %>/completed?_method=DELETE'">未完了にする</button>
+  <% } else { %>
+  <button type="button" class="btn btn-outline-success" onclick="location.href='/todos/<%= todo.id %>/completed?_method=PUT'">完了にする</button>
+  <% } %>
+  <button class="btn btn-outline-primary" onclick="location.href='/todos/<%= todo.id %>/edit'">編集</button>
+  <button class="btn btn-outline-danger" onclick="location.href='/todos/<%= todo.id %>?_method=DELETE'">削除</button>
+</div>

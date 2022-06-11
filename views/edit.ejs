@@ -1,0 +1,38 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/todos">ToDo一覧</a></li>
+    <li class="breadcrumb-item"><a href="/todos/<%= todo.id %>">ToDo詳細</a></li>
+    <li class="breadcrumb-item active" aria-current="page">ToDo編集</li>
+  </ol>
+</nav>
+<div class="text-center">
+    <h2>ToDo編集</h2>
+</div>
+<form action="/todos/<%= todo.id %>?_method=PUT" method="POST">
+  <div class="mb-3">
+    <label for="titleInput" class="form-label">タイトル <span class="text-muted">（入力必須）</span></label>
+    <input type="text" name="title" class="form-control" id="titleInput" placeholder="タイトル" required autofocus value="<%= todo.title %>">
+  </div>
+  <div class="mb-3">
+    <label for="contentsInput" class="form-label">内容</label>
+    <textarea name="description" class="form-control" id="contentsInput" placeholder="内容" rows="3"><%= todo.description %></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="deadlineInput" class="form-label">期限 <span class="text-muted">（入力必須）</span></label>
+    <input type="date" name="deadline" class="form-control" id="deadlineInput" required value="<%= todo.deadline %>">
+  </div>
+  <div class="mb-3 row">
+    <label for="staticCompleted" class="col-sm-1 col-form-label">状態</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticDscription" value="<%= todo.completed ? '完了' : '未完了' %>">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="staticId" class="col-sm-1 col-form-label">ID</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticDscription" value="<%= todo.id %>">
+    </div>
+  </div>
+  <hr class="mb-4">
+  <button class="btn btn-outline-warning" type="submit">更新</button>
+</form>
