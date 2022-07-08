@@ -1,14 +1,15 @@
 'use strict'
 
-// const dataStorage = require('./file-system')
-const dataStorage = require(`./${process.env.npm_lifecycle_event}`)
+const dataStorage = require('./file-system')
+// const dataStorage = require('./sqlite')
+// const dataStorage = require(`./${process.env.npm_lifecycle_event}`)
 const { v4: uuidv4 } = require('uuid')
 const express = require('express')
 const expressEjsLayouts = require("express-ejs-layouts")
 const methodOverride = require('method-override')
 // const connectFlash = require('connect-flash')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.set("view engine", "ejs")
 app.use(expressEjsLayouts)
